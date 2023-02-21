@@ -1,0 +1,17 @@
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.csproj.AssemblyReference.cache
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.AssemblyInfoInputs.cache
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.AssemblyInfo.cs
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.csproj.CoreCompileInputs.cache
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Data.deps.json
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Data.runtimeconfig.json
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Data.dll
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Data.pdb
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Models.dll
+D:\ThePower\ThePower\ThePower.Data\bin\Debug\net6.0\ThePower.Models.pdb
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.csproj.CopyComplete
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.dll
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\refint\ThePower.Data.dll
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.pdb
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ThePower.Data.genruntimeconfig.cache
+D:\ThePower\ThePower\ThePower.Data\obj\Debug\net6.0\ref\ThePower.Data.dll

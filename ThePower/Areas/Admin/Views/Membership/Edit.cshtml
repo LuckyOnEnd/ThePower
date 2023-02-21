@@ -1,0 +1,9 @@
+﻿@model Membership
+
+<form asp-action="Edit" method="post">
+    <input asp-for="Name" value="@Model.Name"/>
+    <input asp-for="Price" value="@Model.Name" />
+    <input asp-for="Description" value="@Model.Description"/>
+
+    <button type="submit">OK</button>
+</form>

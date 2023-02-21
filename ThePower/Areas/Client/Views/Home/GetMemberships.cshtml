@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Membership>
+
+@foreach (var obj in Model)
+{
+    
+            <div>Name:@obj.Name</div>
+        <div>Description:@obj.Description</div>
+        <div>Price:@obj.Price</div>
+        <a asp-controller="Cart" asp-action="Details" asp-route-id="@obj.Id">BUY</a>
+    
+}

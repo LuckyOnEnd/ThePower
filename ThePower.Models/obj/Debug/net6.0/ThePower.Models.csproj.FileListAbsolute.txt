@@ -1,0 +1,12 @@
+D:\ThePower\ThePower\ThePower.Models\bin\Debug\net6.0\ThePower.Models.deps.json
+D:\ThePower\ThePower\ThePower.Models\bin\Debug\net6.0\ThePower.Models.dll
+D:\ThePower\ThePower\ThePower.Models\bin\Debug\net6.0\ThePower.Models.pdb
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.csproj.AssemblyReference.cache
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.AssemblyInfoInputs.cache
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.AssemblyInfo.cs
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.csproj.CoreCompileInputs.cache
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.dll
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\refint\ThePower.Models.dll
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ThePower.Models.pdb
+D:\ThePower\ThePower\ThePower.Models\obj\Debug\net6.0\ref\ThePower.Models.dll

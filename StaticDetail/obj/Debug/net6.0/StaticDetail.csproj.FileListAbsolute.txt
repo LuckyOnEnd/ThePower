@@ -1,0 +1,12 @@
+D:\ThePower\ThePower\StaticDetail\bin\Debug\net6.0\StaticDetail.deps.json
+D:\ThePower\ThePower\StaticDetail\bin\Debug\net6.0\StaticDetail.dll
+D:\ThePower\ThePower\StaticDetail\bin\Debug\net6.0\StaticDetail.pdb
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.csproj.AssemblyReference.cache
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.GeneratedMSBuildEditorConfig.editorconfig
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.AssemblyInfoInputs.cache
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.AssemblyInfo.cs
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.csproj.CoreCompileInputs.cache
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.dll
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\refint\StaticDetail.dll
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\StaticDetail.pdb
+D:\ThePower\ThePower\StaticDetail\obj\Debug\net6.0\ref\StaticDetail.dll

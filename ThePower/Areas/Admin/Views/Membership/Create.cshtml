@@ -1,0 +1,24 @@
+﻿@model Membership
+
+<form asp-action="Create" method="post">
+    <input asp-for="Name"/>
+    <input asp-for="Price"/>
+    <input asp-for="Description"/>
+    <button type="submit" onclick="return ValidateInput()">OK</button>
+</form>
+
+@section Scripts{
+    <script>
+        function ValidateInput(){
+            if(document.getElementById("uploadBox").value ==""){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'oops',
+                    text: 'Upload the imgae',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
