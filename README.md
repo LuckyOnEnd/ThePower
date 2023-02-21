@@ -1,2 +1,2 @@
 # ThePower
-ASP.NET MVC
+Adding a payment method and then create a UI using HTML, CSS, JS
