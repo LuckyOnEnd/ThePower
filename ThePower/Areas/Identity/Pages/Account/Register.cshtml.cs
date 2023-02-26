@@ -107,6 +107,9 @@ namespace ThePower.Areas.Identity.Pages.Account
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string? City { get; set; }
+            public string PhoneNumber { get; set; }
+            public string StreetAdress { get; set; }
+            public string PostalCode { get; set; }
         }
 
 
@@ -135,6 +138,9 @@ namespace ThePower.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName; 
                 user.LastName = Input.LastName;
                 user.City = Input.City;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.PostalCode = Input.PostalCode;
+                user.StreetAdress = Input.StreetAdress;
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

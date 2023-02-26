@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 using System.Security.Claims;
 using ThePower.Data.Repository;
 using ThePower.Data.Repository.IRepository;
@@ -15,67 +16,120 @@ namespace ThePower.Areas.Client.Controllers
     {
         private readonly IUnitOfWork _db;
         [BindProperty]
-        public ShoppingCartViewModel ShoppingCartViewModel { get; set; }
+        public ShoppingCartViewModel ShoppingCartVM { get; set; }
+        [BindProperty]
         private int MemberId { get; set; }
         public CartController(IUnitOfWork db)
         {
             _db = db;
         }
-        [HttpGet]
         public IActionResult Details(int id)
         {
             var claimIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            ShoppingCartViewModel  = new()
+
+            ShoppingCartVM = new ShoppingCartViewModel()
             {
                 Membership = _db.Membership.GetFirst(x => x.Id == id), 
                 OrderHeader = new()
             };
 
-            ShoppingCartViewModel.OrderHeader.AppUser = _db.AppUser.GetFirst(x => x.Id == claim.Value);
+            ShoppingCartVM.OrderHeader.AppUser = _db.AppUser.GetFirst(x => x.Id == claim.Value);
 
-            ShoppingCartViewModel.OrderHeader.Name = ShoppingCartViewModel.OrderHeader.AppUser.Email;
-            ShoppingCartViewModel.OrderHeader.PhoneNumber = ShoppingCartViewModel.OrderHeader.AppUser.PhoneNumber;
-            ShoppingCartViewModel.OrderHeader.StreetAdress = ShoppingCartViewModel.OrderHeader.AppUser.StreetAdress;
-            ShoppingCartViewModel.OrderHeader.City = ShoppingCartViewModel.OrderHeader.AppUser.City;
-            ShoppingCartViewModel.OrderHeader.PostalCode = ShoppingCartViewModel.OrderHeader.AppUser.PostalCode;
+            ShoppingCartVM.OrderHeader.Name = ShoppingCartVM.OrderHeader.AppUser.Email;
+            ShoppingCartVM.OrderHeader.PhoneNumber = ShoppingCartVM.OrderHeader.AppUser.PhoneNumber;
+            ShoppingCartVM.OrderHeader.StreetAdress = ShoppingCartVM.OrderHeader.AppUser.StreetAdress;
+            ShoppingCartVM.OrderHeader.City = ShoppingCartVM.OrderHeader.AppUser.City;
+            ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.AppUser.PostalCode;
 
-            ShoppingCartViewModel.OrderHeader.OrderTotal = Convert.ToDouble(_db.Membership.GetFirst(x => x.Id == id).Price);
+            ShoppingCartVM.OrderHeader.OrderTotal = Convert.ToDouble(_db.Membership.GetFirst(x => x.Id == id).Price);
+            MemberId = ShoppingCartVM.Membership.Id;
 
-            return View(ShoppingCartViewModel);
+            return View(ShoppingCartVM);
         }
 
         [HttpPost]
         [ActionName("Details")]
         [ValidateAntiForgeryToken]
-        public IActionResult DetailsPOST()
+        public IActionResult DetailsPOST(ShoppingCartViewModel ShoppingCartVM, int id)
         {
             var claimIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            ShoppingCartViewModel.Membership = _db.Membership.GetFirst(x => x.Id == MemberId);
-            
-            ShoppingCartViewModel.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
-            ShoppingCartViewModel.OrderHeader.OrderStatus = SD.StatusPending;
-            ShoppingCartViewModel.OrderHeader.OrderDate = DateTime.Now;
-            ShoppingCartViewModel.OrderHeader.AppUserId = claim.Value;
+            ShoppingCartVM.Membership = _db.Membership.GetFirst(x => x.Id == id);
 
-            ShoppingCartViewModel.OrderHeader.OrderTotal = Convert.ToDouble(ShoppingCartViewModel.Membership.Price);
+            ShoppingCartVM.OrderHeader.PaymentStatus = SD.PaymentStatusPending;
+            ShoppingCartVM.OrderHeader.OrderStatus = SD.StatusPending;
+            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            ShoppingCartVM.OrderHeader.AppUserId = claim.Value;
 
-            _db.OrderHeader.Add(ShoppingCartViewModel.OrderHeader);
+            ShoppingCartVM.OrderHeader.OrderTotal = Convert.ToDouble(ShoppingCartVM.Membership.Price);
+
+            _db.OrderHeader.Add(ShoppingCartVM.OrderHeader);
             _db.Save();
 
             OrderDetail orderDetail = new()
             {
-                ProductId = ShoppingCartViewModel.Membership.Id,
-                OrderId = ShoppingCartViewModel.OrderHeader.Id,
-                Price = ShoppingCartViewModel.Membership.Price,
+                ProductId = ShoppingCartVM.Membership.Id,
+                OrderId = ShoppingCartVM.OrderHeader.Id,
+                Price = ShoppingCartVM.Membership.Price,
             };
             _db.OrderDetail.Add(orderDetail);
             _db.Save();
 
+            // stripe API
+            var domain = "https://localhost:7004/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>
+                {
+                  new SessionLineItemOptions
+                  {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                      UnitAmount = (long)(ShoppingCartVM.OrderHeader.OrderTotal * 100),
+                      Currency = "pln",
+                      ProductData = new SessionLineItemPriceDataProductDataOptions
+                      {
+                        Name = ShoppingCartVM.Membership.Name,
+                      },
+                    },
+                    Quantity = 1,
+                  },
+                },
+                PaymentMethodTypes = new List<string>
+                {
+                    "card",
+                },
+                Mode = "payment",
+                SuccessUrl = domain+$"client/cart/OrderConfirm?id={ShoppingCartVM.OrderHeader.Id}",
+                CancelUrl = domain + $"client/home/index",
+            };
 
-            return RedirectToAction("Home", "GetMemberships");
+            var service = new SessionService();
+            Session session = service.Create(options);
+            ShoppingCartVM.OrderHeader.SessionId = session.Id;
+            ShoppingCartVM.OrderHeader.PaymentIntentId = session.PaymentIntentId;
+            _db.OrderHeader.UpdateStripe(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
+            _db.Save();
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+
+        }
+
+        public IActionResult OrderConfirm(int id)
+        {
+            OrderHeader orderHeader = _db.OrderHeader.GetFirst(x => x.Id == id);
+            var service = new SessionService();
+            Session session = service.Get(orderHeader.SessionId);
+            //check status
+
+            if(session.PaymentStatus.ToLower() == "paid")
+            {
+                _db.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
+                _db.Save();
+            }
+            return View(id);
         }
     }
 }

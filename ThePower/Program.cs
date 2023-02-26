@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using ThePower.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using ThePower.Utility;
+using Stripe;
 
 namespace ThePower
 {
@@ -21,7 +22,7 @@ namespace ThePower
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                builder.Configuration.GetConnectionString("DefaultConnection")
                ));
-
+            builder.Services.Configure<StripeSetting>(builder.Configuration.GetSection("Stripe"));
                         builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.TryAddScoped<IUnitOfWork, UnitOfWork>();
@@ -45,6 +46,8 @@ namespace ThePower
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
 
             app.UseRouting();
             app.UseAuthentication();;

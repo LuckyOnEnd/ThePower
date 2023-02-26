@@ -34,5 +34,12 @@ namespace ThePower.Data.Repository
                     order.PaymentStatus = paymentStatus;
             }
         }
+
+        public void UpdateStripe(int id, string sessionId, string paymentId)
+        {
+            var order = _db.OrderHeaders.FirstOrDefault(x => x.Id == id);
+            order.SessionId = sessionId;
+            order.PaymentIntentId = paymentId;
+        }
     }
 }

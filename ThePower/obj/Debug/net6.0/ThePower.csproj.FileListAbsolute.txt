@@ -284,3 +284,4 @@ D:\ThePower\ThePower\ThePower\bin\Debug\net6.0\ThePower.Utility.pdb
 D:\ThePower\ThePower\ThePower\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
 D:\ThePower\ThePower\ThePower\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 D:\ThePower\ThePower\ThePower\obj\Debug\net6.0\ThePower.MvcApplicationPartsAssemblyInfo.cs
+D:\ThePower\ThePower\ThePower\bin\Debug\net6.0\Stripe.net.dll

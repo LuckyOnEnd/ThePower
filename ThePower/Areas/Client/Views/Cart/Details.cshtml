@@ -1,0 +1,25 @@
+﻿@model ShoppingCartViewModel
+@using Microsoft.Extensions.Options
+@inject IOptions<ThePower.Utility.StripeSetting> Stripe
+<form method="post">
+
+    <div>
+        <input asp-for="OrderHeader.Name"/>
+    </div>
+    <div>
+        <input asp-for="OrderHeader.PhoneNumber"  />
+    </div>
+    <div>
+        <input asp-for="OrderHeader.StreetAdress" />
+    </div>
+    <div>
+        <input asp-for="OrderHeader.City" />
+    </div>
+    <div>
+        <input asp-for="OrderHeader.PostalCode" />
+    </div>
+
+<div>@Model.Membership.Name</div>
+<div>@Model.OrderHeader.OrderTotal</div>
+<button type="submit">PAY</button>
+</form>

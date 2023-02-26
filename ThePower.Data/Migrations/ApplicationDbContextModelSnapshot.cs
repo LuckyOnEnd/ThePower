@@ -337,10 +337,6 @@ namespace ThePower.Data.Migrations
                     b.Property<DateTime>("ShippingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("StreetAdress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -366,9 +362,6 @@ namespace ThePower.Data.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

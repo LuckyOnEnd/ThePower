@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+NZu2VrAlBsUIKbPf40AlMSxL+xn02vZOc3P4c6OiAeE6jDw4qIAf/N9G0YVJcnTDziqHk2rP4w8GOHZFMHL4Q==",
+  "dgSpecHash": "t87dNZyfmBiR7s8bQvPjfHER3wML3IeWDn0aNK8x8z9f6rMlLy8zaWXNTTeSCQXBsNgM1AbpwNgdFjYVcU/TTQ==",
   "success": true,
   "projectFilePath": "D:\\ThePower\\ThePower\\ThePower\\ThePower.csproj",
   "expectedPackageFiles": [
@@ -124,6 +124,7 @@
     "C:\\Users\\trusv\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\trusv\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\trusv\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\trusv\\.nuget\\packages\\stripe.net\\41.7.0\\stripe.net.41.7.0.nupkg.sha512",
     "C:\\Users\\trusv\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\trusv\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\trusv\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

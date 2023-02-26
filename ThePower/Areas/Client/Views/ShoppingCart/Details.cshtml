@@ -1,7 +1,0 @@
-﻿@model ShoppingCartViewModel
-
-<form asp-area="Client" asp-controller="Cart" asp-action="Details" asp-route-id="@Model.Membership.Id" method="post">
-<div>@Model.Membership.Name</div>
-<div>@Model.OrderHeader.OrderTotal</div>
-<button type="submit">PAY</button>
-</form>
